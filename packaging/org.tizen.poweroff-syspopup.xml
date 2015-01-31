@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" package="org.tizen.poweroff-syspopup" version="0.2.0" install-location="internal-only" support-mode="screen-reader">
+	<label>Device options popup</label>
+	<description>Device options popup</description>
+	<ui-application appid="org.tizen.poweroff-syspopup" exec="/usr/apps/org.tizen.poweroff-syspopup/bin/poweroff-syspopup" nodisplay="true" multiple="false" type="capp" taskmanage="false" process-pool="true">
+		<label>Device options popup</label>
+	</ui-application>
+</manifest>

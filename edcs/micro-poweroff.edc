@@ -1,0 +1,745 @@
+#define RESOURCE_IMAGE( FILE_NAME ) \
+   group { \
+      name: FILE_NAME; \
+      images.image: FILE_NAME COMP; \
+      parts { \
+         part { name: "image"; \
+            scale: 1; \
+            description { \
+               min: 56 56; \
+               state: "default" 0.0; \
+               image.normal: FILE_NAME; \
+               aspect: 1 1; \
+               aspect_preference: BOTH; \
+			   color_class: "F022L1i"; \
+            } \
+         } \
+      } \
+   }
+#define RESOURCE_IMAGE_IGNORE_EVENT( FILE_NAME ) \
+   group { \
+      name: FILE_NAME; \
+      images.image: FILE_NAME COMP; \
+      parts { \
+         part { name: "image"; \
+            scale: 1; \
+			mouse_events: 0; \
+            description { \
+               min: 65 42; \
+               state: "default" 0.0; \
+               image.normal: FILE_NAME; \
+               aspect_preference: BOTH; \
+			   color_class: "F022L1i"; \
+            } \
+         } \
+      } \
+   }
+
+collections {
+	RESOURCE_IMAGE("micro-poweroff.png");
+	RESOURCE_IMAGE("micro-restart.png");
+	RESOURCE_IMAGE("micro-accessibility.png");
+	RESOURCE_IMAGE("micro-powersaving.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-flightmodeon.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-flightmodeoff.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-mobiledata-on.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-mobiledata-disabled.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-mobiledata-off.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-outdooron.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-outdooroff.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-sound.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-vibration.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-mute.png");
+	RESOURCE_IMAGE_IGNORE_EVENT("micro-wifi.png");
+
+	#include "micro-style.edc"
+	#include "micro-gl-macro.edc"
+
+	group { name: "popup_checkview";
+	   parts {
+	      part { name: "pad_t";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            align: 0.5 0.0;
+	            min: 0 0;
+	            fixed: 0 1;
+	            rel1 {
+	               relative: 1.0 0.0;
+	               to_x: "pad_l";
+	            }
+	            rel2 {
+	               relative: 0.0 0.0;
+	               to_x: "pad_r";
+	            }
+	         }
+	      }
+	      part { name: "pad_l";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            min: 0 0;
+	            fixed: 1 0;
+	            rel2.relative: 0.0 1.0;
+	            align: 0.0 0.0;
+	         }
+	      }
+	      part { name: "pad_r";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            min: 0 0;
+	            fixed: 1 0;
+	            rel1.relative: 1.0 0.0;
+	            align: 1.0 0.0;
+	         }
+	      }
+	      part { name: "elm.swallow.content";
+	         type: SWALLOW;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            fixed: 1 1;
+	            rel1 {
+	               relative: 1.0 1.0;
+	               to_x: "pad_l";
+	               to_y: "pad_t";
+	            }
+	            rel2 {
+	               relative: 0.0 0.0;
+	               to_x: "pad_r";
+	               to_y: "pad_b";
+	            }
+	         }
+	      }
+	      part { name: "pad_b";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            align: 0.0 1.0;
+	            min: 0 0;
+	            fixed: 0 1;
+	            rel1.relative: 0.0 1.0;
+	         }
+	      }
+	   }
+	}
+
+	group { name: "popup_checkview_internal";
+	   parts {
+	      part { name: "label";
+	         scale: 1;
+	         type: SWALLOW;
+	         description { state: "default" 0.0;
+	            fixed: 1 0;
+	            rel2 {
+	               relative: 1.0 0.0;
+	               to_y: "end_field";
+	            }
+	         }
+	      }
+	      part { name: "bottom_pad";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            align: 0.0 1.0;
+	            min: 0 4;
+	            fixed: 0 1;
+	            rel1.relative: 0.0 1.0;
+	         }
+	      }
+	      part { name: "pad_b";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            align: 0.0 1.0;
+	            min: 0 82;
+	            fixed: 0 1;
+	            rel1 {
+	               relative: 0.0 0.0;
+	               to: "bottom_pad";
+	            }
+	            rel2 {
+	               relative: 1.0 0.0;
+	               to: "bottom_pad";
+	            }
+	         }
+	      }
+	      part { name: "end_field";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            align: 0.0 1.0;
+	            min: 0 82;
+	            fixed: 0 1;
+	            rel1 {
+	               relative: 0.0 1.0;
+	               to: "pad_b";
+	            }
+	            rel2 {
+	               relative: 1.0 1.0;
+	               to: "pad_b";
+	            }
+	         }
+	      }
+	      part { name: "check_bottom";
+	         type: SPACER;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            align: 0.0 1.0;
+	            min: 0 4;
+	            fixed: 0 1;
+	            rel1 {
+	               relative: 0.0 0.0;
+	               to: "end_field";
+	            }
+	            rel2 {
+	               relative: 1.0 0.0;
+	               to: "end_field";
+	            }
+	         }
+	      }
+	      part { name: "elm.swallow.end";
+	         type: SWALLOW;
+	         scale: 1;
+	         description { state: "default" 0.0;
+	            fixed: 1 1;
+	            align: 0.0 0.5;
+	            rel1.to: "end_field";
+	            rel1.offset: 1 0;
+	            rel2.to: "end_field";
+	         }
+	      }
+	   }
+	}
+
+	group { name: "micro_3_title_content_button";
+		parts {
+			part { name: "elm.swallow.content";
+				scale: 1;
+				type: SWALLOW;
+				description { state: "default" 0.0;
+					min: 0 255;
+					max: -1 255;
+				}
+			}
+		}
+	}
+
+	group { name: "micro_3_default";
+		parts {
+			part { name: "elm.swallow.content";
+				scale: 1;
+				type: SWALLOW;
+				description { state: "default" 0.0;
+					min: 0 478;
+					max: -1 -1;
+				}
+			}
+		}
+	}
+
+	group { name: "micro_2items";
+		parts {
+			part { name: "elm.swallow.content";
+				scale: 1;
+				type: SWALLOW;
+				description { state: "default" 0.0;
+					min: 0 201;
+					max: -1 -1;
+				}
+			}
+		}
+	}
+
+	group { name: "micro_3items";
+		parts {
+			part { name: "elm.swallow.content";
+				scale: 1;
+				type: SWALLOW;
+				description { state: "default" 0.0;
+					min: 0 302;
+					max: -1 -1;
+				}
+			}
+		}
+	}
+
+
+group { name: "elm/button/base/device_option";
+   script {
+      public mouse_down = 0;
+      public multi_down = 0;
+      public move = 0;
+   }
+   parts {
+      part { name: "bg";
+         type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "pressed" 0.0;
+            color_class: "B041P";
+         }
+         description { state: "disabled" 0.0;
+            color_class: "B0211D";
+         }
+      }
+      part { name: "top_padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 0.5 0;
+            min: 0 BUTTON_DEVICE_OPTION_TOP_PADDING_SIZE;
+            rel2 {
+               relative: 1.0 0.0;
+            }
+         }
+      }
+      part { name: "bottom_padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 0.5 1;
+            min: 0 0;
+            rel1 {
+               relative: 0.0 1.0;
+            }
+         }
+      }
+      part { name: "elm.swallow.content";
+         clip_to: "elm.swallow.content.clip";
+         type: SWALLOW;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 0 1;
+            align: 0.5 0.0;
+            min: BUTTON_DEVICE_OPTION_ICON_SIZE;
+            max: BUTTON_DEVICE_OPTION_ICON_SIZE;
+            rel1 {
+               to_y: "top_padding";
+               relative: 0.0 1.0;
+            }
+            rel2 {
+               to_y: "top_padding";
+               relative: 1.0 1.0;
+            }
+         }
+      }
+      part { name: "text_left_padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            align: 0 0.5;
+            min: BUTTON_DEVICE_OPTION_LR_PADDING_SIZE 0;
+            max: BUTTON_DEVICE_OPTION_LR_PADDING_SIZE -1;
+            rel2 {
+               relative: 0.0 1.0;
+            }
+         }
+      }
+      part { name: "text_right_padding";
+         type: SPACER;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 0;
+            align: 1 0.5;
+            min: BUTTON_DEVICE_OPTION_LR_PADDING_SIZE 0;
+            max: BUTTON_DEVICE_OPTION_LR_PADDING_SIZE -1;
+            rel1 {
+               relative: 1.0 0.0;
+            }
+         }
+      }
+      part { name: "elm.text";
+         type: TEXTBLOCK;
+         mouse_events: 0;
+         scale: 1;
+         description { state: "default" 0.0;
+            fixed: 1 1;
+            min: BUTTON_DEVICE_OPTION_TEXT_PART_SIZE;
+            rel1 {
+               to_x: "text_left_padding";
+               to_y: "elm.swallow.content";
+               relative: 1.0 1.0;
+            }
+            rel2 {
+               to_x: "text_right_padding";
+               to_y: "bottom_padding";
+               relative: 0.0 0.0;
+            }
+            text {
+               min: 0 1;
+               style: "button_popup_device_option_2_text_normal";
+            }
+			color_class: "T0211";
+         }
+         description { state: "pressed" 0.0;
+            inherit: "default" 0.0;
+            text.style: "button_popup_device_option_2_text_press";
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            text.style: "button_popup_device_option_2_text_dim";
+         }
+      }
+      part { name: "elm.swallow.content.clip";
+         type: RECT;
+         scale: 1;
+         description { state: "default" 0.0;
+            color_class: "AO015";
+         }
+         description { state: "disabled" 0.0;
+            inherit: "default" 0.0;
+            color_class: "AO017";
+         }
+      }
+   }
+   programs {
+      program { name: "pressed";
+         signal: "mouse,down,1*";
+         source: "bg";
+         script {
+            if ((get_int(multi_down) == 0) && (get_int(mouse_down) == 0))
+              {
+                  set_int(mouse_down, 1);
+                  run_program(PROGRAM:"button_press1");
+              }
+         }
+      }
+      program { name: "button_press1";
+         script {
+            new st[31];
+            new Float:vl;
+            get_state(PART:"bg", st, 30, vl);
+            if (strcmp(st, "disabled")) {
+               set_state(PART:"elm.text", "pressed", 0.0);
+               set_state(PART:"bg", "pressed", 0.0);
+               emit("elm,action,press", "");
+            }
+         }
+      }
+      program { name: "unpressed";
+         signal: "mouse,up,1";
+         source: "bg";
+         script {
+            if (get_int(mouse_down) == 1) {
+              set_int(mouse_down, 0);
+              run_program(PROGRAM:"button_unpress1");
+            }
+         }
+      }
+      program { name: "button_unpress1";
+         script {
+            new st[31];
+            new Float:vl;
+            get_state(PART:"bg", st, 30, vl);
+            if (strcmp(st, "disabled")) {
+               set_state(PART:"elm.text", "default", 0.0);
+               set_state(PART:"bg", "default", 0.0);
+               emit("elm,action,unpress", "");
+            }
+         }
+      }
+      program { name: "button_move";
+         signal: "mouse,move";
+         source: "bg";
+         script {
+            if (get_int(mouse_down) == 1) {
+               set_int(move, get_int(move)+1);
+               if (get_int(move) > 15) {
+                  set_int(move, 0);
+                  set_int(mouse_down, 0);
+                  run_program(PROGRAM:"button_unpress1");
+               }
+            }
+         }
+      }
+      program { name: "touch_snd";
+         signal: "mouse,clicked,1";
+         source: "bg";
+         script {
+            new st[31];
+            new Float:vl;
+            if (get_int(multi_down) == 0) {
+               get_state(PART:"bg", st, 30, vl);
+               if (strcmp(st, "disabled")) {
+                  play_sample("touch_sound", 1.0);
+                  emit("elm,action,click", "");
+               }
+            }
+         }
+      }
+      program { name: "disable";
+         signal: "elm,state,disabled";
+         source: "elm";
+         action: STATE_SET "disabled" 0.0;
+         target: "elm.swallow.content.clip";
+         target: "elm.text";
+         target: "bg";
+      }
+      program { name: "disable_icon";
+         signal: "elm,state,disabled,icon";
+         source: "elm";
+         action: STATE_SET "disabled" 0.0;
+         target: "elm.swallow.content.clip";
+      }
+      program { name: "enable";
+         signal: "elm,state,enabled";
+         source: "elm";
+         action: STATE_SET "default" 0.0;
+         target: "elm.swallow.content.clip";
+         target: "elm.text";
+         target: "bg";
+      }
+      program { name: "multi_down";
+         signal: "elm,action,multi,down";
+         source: "elm";
+         script {
+            set_int(multi_down, 1);
+         }
+      }
+      program { name: "multi_up";
+         signal: "elm,action,multi,up";
+         source: "elm";
+         script {
+            set_int(multi_down, 0);
+         }
+      }
+   }
+}
+
+group { name: "elm/genlist/item/device_option.1text.1icon/default";
+   PROLOG_LIST
+   data.item: "texts" "elm.text";
+   data.item: "contents" "elm.icon";
+
+   parts {
+      PART_LIST_BG
+      PART_LIST_PADDINGS(
+         LIST_PADDING_LEFT_SIZE, LIST_PADDING_RIGHT_SIZE,
+         LIST_1LINE_PADDING_TOP_SIZE, LIST_1LINE_PADDING_BOTTOM_SIZE
+      )
+      PART(RECT, "bottom_line_clip",
+         description { state: "default" 0.0; }
+         description { state: "hide" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "decorate" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "reorder" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "decorate_reorder" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "flipped" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+      )
+      PART(RECT, "bottom_line",
+         mouse_events: 0;
+         clip_to: "bottom_line_clip";
+         description { state: "default" 0.0;
+            min: 0 1;
+            max: -1 1;
+            fixed: 0 1;
+            align: 0.5 1;
+            color_class: "B0222";
+            rel1.offset: -1 -1;
+         }
+      )
+      PART(SWALLOW, "elm.icon",
+         DESC_L("elm.padding.left",
+           min: LIST_DEVICE_OPTION_ICON_MIN_MAX_SIZE;
+           max: LIST_DEVICE_OPTION_ICON_MIN_MAX_SIZE;
+           fixed: 1 1;
+         )
+      )
+      PART(SPACER, "elm.padding.icon.right",
+         DESC_L("elm.icon", min: LIST_PADDING_R_ICON_DEFAULT_SIZE 0; max: LIST_PADDING_R_ICON_DEFAULT_SIZE -1; )
+      )
+      PART(TEXTBLOCK, "elm.text",
+         DESC_LR("elm.padding.icon.right", "elm.padding.right",
+            min: 0 LIST_DEVICE_OPTION_HEIGHT;
+            PARAM_TEXT("list_text_main_normal",)
+         ) DESCRIPIONS_TEXT("list_text_main_dim", "list_text_main_press")
+      )
+   }
+   PROGRAMS_LIST( target: "elm.text"; target: "elm.icon"; )
+}
+
+group { name: "elm/genlist/item/device_option.2text.1icon/default";
+   PROLOG_LIST
+   data.item: "texts" "elm.text.1 elm.text.2";
+   data.item: "contents" "elm.icon";
+
+   parts {
+      PART_LIST_BG
+      PART_LIST_PADDINGS(
+         LIST_PADDING_LEFT_SIZE, LIST_PADDING_RIGHT_SIZE,
+         LIST_DEVICE_OPTION_PADDING_TOP_SIZE, LIST_DEVICE_OPTION_PADDING_BOTTOM_SIZE
+      )
+      PART(RECT, "bottom_line_clip",
+         description { state: "default" 0.0; }
+         description { state: "hide" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "decorate" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "reorder" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "decorate_reorder" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "flipped" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+      )
+      PART(RECT, "bottom_line",
+         mouse_events: 0;
+         clip_to: "bottom_line_clip";
+         description { state: "default" 0.0;
+            min: 0 1;
+            max: -1 1;
+            fixed: 0 1;
+            align: 0.5 1;
+            color_class: "B0222";
+            rel1.offset: -1 -1;
+         }
+      )
+      PART(SWALLOW, "elm.icon",
+         DESC_L("elm.padding.left",
+           min: LIST_DEVICE_OPTION_ICON_MIN_MAX_SIZE;
+           max: LIST_DEVICE_OPTION_ICON_MIN_MAX_SIZE;
+           fixed: 1 1;
+         )
+      )
+      PART(SPACER, "elm.padding.icon.right",
+         DESC_L("elm.icon", min: LIST_PADDING_R_ICON_DEFAULT_SIZE 0; max: LIST_PADDING_R_ICON_DEFAULT_SIZE -1; )
+      )
+      PART(TEXTBLOCK, "elm.text.1",
+         DESC_LRTB("elm.padding.icon.right", "elm.padding.right", "elm.padding.top", "elm.text.2",
+            min: 0 0;
+            PARAM_TEXT("list_text_main_normal",)
+         ) DESCRIPIONS_TEXT("list_text_main_dim", "list_text_main_press")
+      )
+      PART(TEXTBLOCK, "elm.text.2",
+         DESC_LRB( "elm.padding.icon.right", "elm.padding.right", "elm.padding.bottom",
+            min: 0 0;
+            PARAM_TEXT("list_text_sub_normal",)
+         ) DESCRIPIONS_TEXT("list_text_sub_dim", "list_text_sub_press")
+      )
+   }
+   PROGRAMS_LIST( target: "elm.text.1"; target: "elm.text.2"; target: "elm.icon"; )
+}
+
+group { name: "elm/genlist/item/device_option.2icon.divider/default";
+   PROLOG_LIST
+   data.item: "contents" "elm.icon elm.icon.1";
+
+   parts {
+      PART_LIST_BG
+      PART(RECT, "bottom_line_clip",
+         description { state: "default" 0.0; }
+         description { state: "hide" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "decorate" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "reorder" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "decorate_reorder" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+         description { state: "flipped" 0.0;
+            inherit: "default" 0.0;
+            color: 0 0 0 0;
+         }
+      )
+      PART(RECT, "bottom_line",
+         mouse_events: 0;
+         clip_to: "bottom_line_clip";
+         description { state: "default" 0.0;
+            min: 0 1;
+            max: -1 1;
+            fixed: 0 1;
+            align: 0.5 1;
+            color_class: "B0222";
+            rel1.offset: -1 -1;
+         }
+      )
+      PART_LIST_PADDINGS( 0, 0, 0, 0)
+
+      PART(SWALLOW, "elm.icon",
+         DESC_LRTB("elm.padding.left", "elm.padding.divider.line", "elm.padding.top","elm.padding.bottom",
+            min: 0 115;
+         )
+      )
+      PART(SWALLOW, "elm.icon.1",
+         DESC_LRTB("elm.padding.divider.line", "elm.padding.right", "elm.padding.top","elm.padding.bottom",
+           min: 0 115;
+         )
+      )
+      PART(RECT, "elm.padding.divider.line",
+         description { state: "default" 0.0;
+            min: LIST_DEVICE_OPTION_ICON_DIVIDER_MIN_MAX_INC;
+            max: LIST_DEVICE_OPTION_ICON_DIVIDER_MIN_MAX_INC;
+            fixed: 1 1;
+            color_class: "B0222";
+         }
+      )
+   }
+   PROGRAMS_LIST(target: "elm.icon"; target: "elm.icon.1";)
+}
+
+group { name: "elm/genlist/item/device_option.2text/default";
+   PROLOG_LIST
+   data.item: "texts" "elm.text.1 elm.text.2";
+
+   parts {
+      PART_LIST_BG
+      PART_LIST_PADDINGS(
+         LIST_PADDING_LEFT_SIZE, LIST_PADDING_RIGHT_SIZE,
+         LIST_DEVICE_OPTION_PADDING_TOP_SIZE, LIST_DEVICE_OPTION_PADDING_BOTTOM_SIZE
+      )
+      PART_LIST_BOTTOMLINE
+      PART(TEXTBLOCK, "elm.text.1",
+         DESC_LRTB("elm.padding.left", "elm.padding.right", "elm.padding.top", "elm.text.2",
+            min: 0 0;
+            PARAM_TEXT("list_text_main_normal",)
+         ) DESCRIPIONS_TEXT("list_text_main_dim", "list_text_main_press")
+      )
+      PART(TEXTBLOCK, "elm.text.2",
+         DESC_LRB("elm.padding.left", "elm.padding.right", "elm.padding.bottom",
+            min: 0 0;
+            PARAM_TEXT("list_text_sub_normal",)
+         ) DESCRIPIONS_TEXT("list_text_sub_dim", "list_text_sub_press")
+      )
+   }
+   PROGRAMS_LIST( target: "elm.text.1"; target: "elm.text.2";)
+}
+
+}

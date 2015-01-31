@@ -1,0 +1,259 @@
+#define ACTIONBAR_TEXT_SIZE                            33
+
+#define LIST_PADDING_LEFT_SIZE                         16
+#define LIST_PADDING_RIGHT_SIZE                        8
+#define LIST_PADDING_DEFAULT_SIZE                      16
+#define LIST_PADDING_R_ICON_RIGHT_SIZE                 8
+#define LIST_PADDING_R_ICON_DEFAULT_SIZE               8
+#define LIST_1LINE_HEIGHT                              100
+#define LIST_1LINE_PADDING_TOP_SIZE                    25
+#define LIST_1LINE_PADDING_BOTTOM_SIZE                 26
+#define LIST_2LINE_PADDING_TOP_SIZE                    8
+#define LIST_2LINE_PADDING_BOTTOM_SIZE                 9
+#define LIST_TEXT_MAIN_SIZE                            42
+#define LIST_TEXT_SUB_SIZE                             27
+#define LIST_TEXT_SWEEP_SIZE                           32
+#define LIST_GROUPINDEX_TEXT_SIZE                      27
+#define LIST_NOTI_ICON_SIZE                            52 52
+#define LIST_NOTI_TEXT_SIZE                            24
+
+#define LIST_DEVICE_OPTION_PADDING_TOP_SIZE            10
+#define LIST_DEVICE_OPTION_PADDING_BOTTOM_SIZE         10
+#define LIST_DEVICE_OPTION_ICON_MIN_MAX_SIZE           56 56
+#define LIST_DEVICE_OPTION_HEIGHT                      100
+#define LIST_DEVICE_OPTION_TEXT_MAIN_SIZE              34
+#define LIST_DEVICE_OPTION_TEXT_SUB_SIZE               27
+#define LIST_DEVICE_OPTION_ICON1_MIN_MAX_SIZE          160 100
+#define LIST_DEVICE_OPTION_ICON_DIVIDER_MIN_MAX_INC    1 68
+
+#define BUTTON_TEXT_SIZE                               31
+#define BUTTON_DEVICE_OPTION_TOP_PADDING_SIZE          1
+#define BUTTON_DEVICE_OPTION_ICON_SIZE                 65 44
+#define BUTTON_DEVICE_OPTION_TEXT_PART_SIZE            0 70
+#define BUTTON_DEVICE_OPTION_LR_PADDING_SIZE           10
+
+#define CHECK_TEXT_SIZE                                36
+#define INDEX_SCROLL_HANDLE_ITEM_TEXT_SIZE             27
+#define INDEX_SCROLL_POPUP_TEXT_SIZE                   70
+
+#define POPUP_OUTSIDE_PADDING "101" //480(total height) - 379(popup max height) 79% of total height
+#define POPUP_TITLE_AREA_HEIGHT "68"
+
+#define POPUP_TITLE_TEXT_SIZE                          30
+#define POPUP_BODY_TEXT_SIZE                           34
+#define POPUP_TOAST_TEXT_SIZE                          34
+
+#define BODY_NORMAL_TEXT_SIZE                          38
+#define BODY_NORMAL_TEXT_SUB_SIZE                      27
+#define NOITEM_TEXT_SIZE                               32
+
+#define STYLE_TAG \
+   tag:  "br" "\n";\
+   tag:  "ps" "ps";\
+   tag:  "tab" "\t";\
+   tag:  "b" "+ font_weight=Bold";
+
+#define STYLE_TAG_MATCH \
+      tag:  "match" "+ color=#ffffff color_class=T0212";
+
+#define STYLE_TAG_MATCH_FOCUS \
+      tag:  "match" ;
+
+styles {
+  // Index_Scroller Styles
+  style { name: "Index_scroll_bar_select";
+    base: "font=Tizen:style=Regular font_size="INDEX_SCROLL_HANDLE_ITEM_TEXT_SIZE" align=center color=#FFFFFF color_class=T0311P text_class=T0311P ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "Index_scroll_bar_unselect";
+    base: "font=Tizen:style=Regular font_size="INDEX_SCROLL_HANDLE_ITEM_TEXT_SIZE" align=center color=#FFFFFF color_class=T0311 text_class=T0311 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "Index_scroll_1depth_popup";
+    base: "font=Tizen:style=Regular font_size="INDEX_SCROLL_POPUP_TEXT_SIZE" align=center color=#FFFFFF color_class=T0312P text_class=T0312P ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "Index_scroll_1depth_popup_left_align";
+    base: "font=Tizen:style=Regular font_size="INDEX_SCROLL_POPUP_TEXT_SIZE" align=left color=#FFFFFF color_class=T0312 text_class=T0312 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "Index_scroll_bar_2depth_popup";
+    base: "font=Tizen:style=Regular font_size="INDEX_SCROLL_POPUP_TEXT_SIZE" align=right color=#FFFFFF color_class=T0312P text_class=T0312P ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "Index_scroll_bar_2depth_focus_bar";
+    base: "font=Tizen:style=Regular font_size="INDEX_SCROLL_HANDLE_ITEM_TEXT_SIZE" align=center color=#FFFFFF color_class=T0313 text_class=T0313 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  // Naviframe Style
+  style { name: "action_bar_title";
+    base: "font=Tizen:style=Bold font_size="ACTIONBAR_TEXT_SIZE" color=#FFFFFF color_class=T012 text_class=T012 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  // List Style
+  style { name: "list_text_groupindex_normal";
+    base: "font=Tizen:style=Regular font_size="LIST_GROUPINDEX_TEXT_SIZE" color=#ffffff color_class=T0231 text_class=T0231 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+   style { name: "list_text_groupindex_sub_normal";
+    base: "font=Tizen:style=Regular font_size="LIST_GROUPINDEX_TEXT_SIZE" color=#FFFFFF color_class=T0232 text_class=T0232 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_main_normal";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_MAIN_SIZE" color=#ffffff color_class=T0211 text_class=T0211 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_main_press";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_MAIN_SIZE" color=#ffffff color_class=T0211P text_class=T0211P ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_main_dim";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_MAIN_SIZE" color=#ffffff color_class=T0211D text_class=T0211D ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_sub_normal";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SUB_SIZE" color=#ffffff color_class=T022 text_class=T022 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+ style { name: "list_text_sub_press";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SUB_SIZE" color=#ffffff color_class=T022 text_class=T022P ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_sub_dim";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SUB_SIZE" color=#ffffff color_class=T022D text_class=T022D ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_sub_multiline_normal";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SUB_SIZE" color=#ffffff color_class=T022 text_class=T022 wrap=mixed";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_sub_multiline_dim";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SUB_SIZE" color=#ffffff color_class=T022D text_class=T022D wrap=mixed";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_sub_multiline_press";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SUB_SIZE" color=#ffffff color_class=T022P text_class=T022P wrap=mixed";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_multiline";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_MAIN_SIZE" color=#ffffff color_class=T0211 text_class=T0211 wrap=mixed";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_multiline_2line_normal";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_MAIN_SIZE" color=#ffffff color_class=T0211 text_class=T0211 wrap=mixed ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_text_multiline_2line_dim";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_MAIN_SIZE" color=#ffffff color_class=T0211D text_class=T0211D wrap=mixed ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_noti_style";
+    base: "font=Tizen:style=Bold font_size="LIST_NOTI_TEXT_SIZE" align=center color="LIST_NOTI_TEXT_COLOR" wrap=mixed ellipsis=1.0 text_class=tizen";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "list_sweep_style";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SWEEP_SIZE" align=center color=#ffffff color_class=T024 text_class=T024 ellipsis=1.0 align=center";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  // device_option
+  style { name: "list_device_option_sub_normal";
+    base: "font=Tizen:style=Regular font_size="LIST_TEXT_SUB_SIZE" color=#ffffff color_class=T022 text_class=T022 ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+   }
+  style { name: "button_popup_device_option_2_text_normal";
+    base: "font=Tizen:style=Regular align=center font_size="LIST_DEVICE_OPTION_TEXT_SUB_SIZE" color=#FFFFFF color_class=T095 text_class=T095 wrap=mixed ellipsis=1.0";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "button_popup_device_option_2_text_press";
+    base: "font=Tizen:style=Regular align=center font_size="LIST_DEVICE_OPTION_TEXT_SUB_SIZE" align=center color=#FFFFFF color_class=T095P text_class=T095P ellipsis=1.0 wrap=mixed";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  style { name: "button_popup_device_option_2_text_dim";
+    base: "font=Tizen:style=Regular align=center font_size="LIST_DEVICE_OPTION_TEXT_SUB_SIZE" align=center color=#FFFFFF color_class=T095D text_class=T095D ellipsis=1.0 wrap=mixed";
+    STYLE_TAG
+    STYLE_TAG_MATCH
+  }
+  // Nocontent styles
+  style { name: "nocontent_style";
+    base: "font=Tizen:style=Regular font_size="NOITEM_TEXT_SIZE" align=center color=#FFFFFF color_class=T071 text_class=T071 wrap=mixed ";
+    STYLE_TAG
+  }
+  // Button styles
+  style { name: "button_general_text_normal";
+    base: "font=Tizen:style=Regular font_size="BUTTON_TEXT_SIZE" align=center color=#FFFFFF color_class=T041 ellipsis=1.0 wrap=mixed text_class=T041";
+    STYLE_TAG
+  }
+  style { name: "button_general_text_dim";
+    base: "font=Tizen:style=Regular font_size="BUTTON_TEXT_SIZE" align=center color=#FFFFFF color_class=T041D ellipsis=1.0 wrap=mixed text_class=T041D";
+    STYLE_TAG
+  }
+  style { name: "button_general_text_press";
+    base: "font=Tizen:style=Regular font_size="BUTTON_TEXT_SIZE" align=center color=#FFFFFF color_class=T041P ellipsis=1.0 wrap=mixed text_class=T041P";
+    STYLE_TAG
+  }
+  style { name: "button_popup_text_normal";
+    base: "font=Tizen:style=Regular font_size="BUTTON_TEXT_SIZE" align=center color=#FFFFFF color_class=T093 ellipsis=1.0 wrap=mixed text_class=T093";
+    STYLE_TAG
+  }
+  style { name: "button_popup_text_dim";
+    base: "font=Tizen:style=Regular font_size="BUTTON_TEXT_SIZE" align=center color=#FFFFFF color_class=T093D ellipsis=1.0 wrap=mixed text_class=T093D";
+    STYLE_TAG
+  }
+  style { name: "button_popup_text_press";
+    base: "font=Tizen:style=Regular font_size="BUTTON_TEXT_SIZE" align=center color=#FFFFFF color_class=T093P ellipsis=1.0 wrap=mixed text_class=T093P";
+    STYLE_TAG
+  }
+  style { name: "check_text_normal";
+     base: "font=Tizen:style=Regular font_size="CHECK_TEXT_SIZE" align=left color=#FFFFFF color_class=T092 wrap=mixed ellipsis=1.0 text_class=T092";
+  }
+  style { name: "popup_title_style";
+    base: "font=Tizen:style=Bold font_size="POPUP_TITLE_TEXT_SIZE" color=#FFFFFF color_class=T091 ellipsis=1.0 text_class=T091";
+    STYLE_TAG
+  }
+  style { name: "popup_body_default_font_style";
+    base: "font=Tizen:style=Regular font_size="POPUP_BODY_TEXT_SIZE" color=#FFFFFF color_class=T092 wrap=mixed text_class=T092";
+    STYLE_TAG
+  }
+  style { name: "popup_toast_style";
+    base: "font=Tizen:style=Regular font_size="POPUP_TOAST_TEXT_SIZE" color=#FFFFFF color_class=T092 wrap=mixed text_class=T092";
+    STYLE_TAG
+  }
+  style { name: "body_normal_1line_style";
+     base: "font=Tizen:style=Bold font_size="BODY_NORMAL_TEXT_SIZE" align=center color=#FFFFFF color_class=T0812 wrap=mixed ellipsis=1.0 text_class=T0812";
+     STYLE_TAG
+  }
+  style { name: "body_normal_2line_main_style";
+     base: "font=Tizen:style=Bold font_size="BODY_NORMAL_TEXT_SIZE" align=center color=#FFFFFF color_class=T0811 wrap=mixed ellipsis=1.0 text_class=T0811";
+     STYLE_TAG
+  }
+  style { name: "body_normal_2line_style";
+    base: "font=Tizen:style=Regular font_size="BODY_NORMAL_TEXT_SUB_SIZE" align=center color=#FFFFFF color_class=T082 wrap=mixed ellipsis=1.0 text_class=T082";
+    STYLE_TAG
+  }
+}

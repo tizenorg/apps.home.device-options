@@ -1,0 +1,85 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+SET(SRC_PATH       ${CMAKE_SOURCE_DIR}/src)
+SET(CORE_PATH      ${SRC_PATH}/core)
+SET(PACKAGING_PATH ${CMAKE_SOURCE_DIR}/packaging)
+SET(TABLE_PATH     ${CMAKE_SOURCE_DIR}/edcs/table)
+SET(TABLE_XML_PATH ${PREFIX}/apps/${PACKAGE}/res/table)
+
+FILE(GLOB FILES "${CORE_PATH}/*.c")
+FOREACH(SRC ${FILES})
+	SET (SRCS ${SRCS} ${SRC})
+ENDFOREACH()
+
+SET (SRCS ${SRCS} ${SRC_PATH}/poweroff/poweroff.c)
+SET (SRCS ${SRCS} ${SRC_PATH}/restart/restart.c)
+
+FILE(GLOB DIRS "${SRC_PATH}/*")
+FOREACH(HEADER ${DIRS})
+	IF(IS_DIRECTORY ${HEADER})
+		SET (HEADERS ${HEADERS} ${HEADER})
+	ENDIF()
+ENDFOREACH()
+
+MESSAGE("${HEADERS}")
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
+INCLUDE_DIRECTORIES(${HEADERS})
+
+SET(PKG_MODULES ${PKG_MODULES}
+		appcore-efl
+		elementary
+		ecore-x
+		utilX
+		dlog
+		vconf
+		edbus
+		efl-assist
+		appsvc
+		feedback
+		capi-media-sound-manager
+		deviced
+		syspopup-caller
+		efl-assist
+		capi-appfw-application
+)
+
+INCLUDE(FindPkgConfig)
+pkg_check_modules(poweroff_pkgs REQUIRED ${PKG_MODULES})
+
+FOREACH(flag ${poweroff_pkgs_CFLAGS})
+	SET(EXTRA_CFLAGS "${EXTRA_CFLAGS} ${flag} -g")
+ENDFOREACH(flag)
+
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${EXTRA_CFLAGS}")
+SET(CMAKE_C_FLAGS_DEBUG "-O0 -g")
+SET(CMAKE_C_FLAGS_RELEASE "-O2")
+SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--as-needed")
+
+ADD_EXECUTABLE(${APPNAME} ${SRCS})
+TARGET_LINK_LIBRARIES(${APPNAME} ${poweroff_pkgs_LDFLAGS} "-pie")
+ADD_DEFINITIONS("-fpie")
+
+ADD_DEFINITIONS("-DTABLE_XML_PATH=\"${TABLE_XML_PATH}\"")
+
+IF("$ENV{CFLAGS}" MATCHES "-DDEVICE_OPTIONS_MICRO")
+ADD_DEFINITIONS("-DDEVICE_OPTIONS_MICRO")
+SET(POWEROFF_EDC "micro-poweroff.edc")
+ENDIF()
+
+IF("$ENV{CFLAGS}" MATCHES "-DDEVICE_OPTIONS_MICRO_3")
+ADD_DEFINITIONS("-DDEVICE_OPTIONS_MICRO_3")
+ENDIF()
+
+ADD_CUSTOM_TARGET(poweroff.edj
+	COMMAND edje_cc -id ${CMAKE_SOURCE_DIR}/edcs/icons
+	${CMAKE_SOURCE_DIR}/edcs/${POWEROFF_EDC} ${CMAKE_BINARY_DIR}/poweroff.edj
+	DEPENDS ${CMAKE_SOURCE_DIR}/edcs/${POWEROFF_EDC}
+)
+ADD_DEPENDENCIES(${APPNAME} poweroff.edj)
+
+INSTALL(TARGETS ${APPNAME}                         DESTINATION ${PREFIX}/apps/${PACKAGE}/bin)
+INSTALL(FILES   ${CMAKE_BINARY_DIR}/poweroff.edj   DESTINATION ${DO_EDJE_DIR})
+INSTALL(FILES   ${PACKAGING_PATH}/${PACKAGE}.xml   DESTINATION ${PREFIX}/share/packages/)
+INSTALL(FILES   ${PACKAGING_PATH}/${PACKAGE}.efl  DESTINATION /etc/smack/accesses.d)
+INSTALL(FILES   ${TABLE_PATH}/poweroff-font.xml    DESTINATION ${TABLE_XML_PATH})
+INSTALL(FILES   ${TABLE_PATH}/poweroff-color.xml   DESTINATION ${TABLE_XML_PATH})
